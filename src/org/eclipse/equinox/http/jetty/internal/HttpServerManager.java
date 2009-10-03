@@ -18,12 +18,15 @@ import javax.servlet.*;
 import org.eclipse.equinox.http.jetty.JettyConstants;
 import org.eclipse.equinox.http.jetty.JettyCustomizer;
 import org.eclipse.equinox.http.servlet.HttpServiceServlet;
-import org.mortbay.jetty.Connector;
-import org.mortbay.jetty.Server;
-import org.mortbay.jetty.bio.SocketConnector;
-import org.mortbay.jetty.nio.SelectChannelConnector;
-import org.mortbay.jetty.security.SslSocketConnector;
-import org.mortbay.jetty.servlet.*;
+import org.eclipse.jetty.server.Connector;
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.bio.SocketConnector;
+import org.eclipse.jetty.server.nio.SelectChannelConnector;
+import org.eclipse.jetty.server.session.HashSessionManager;
+import org.eclipse.jetty.server.session.SessionHandler;
+import org.eclipse.jetty.server.ssl.SslSocketConnector;
+import org.eclipse.jetty.servlet.ServletContextHandler;
+import org.eclipse.jetty.servlet.ServletHolder;
 import org.osgi.framework.Constants;
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.cm.ManagedServiceFactory;
@@ -98,12 +101,12 @@ public class HttpServerManager implements ManagedServiceFactory {
 		if (otherInfo != null)
 			holder.setInitParameter(JettyConstants.OTHER_INFO, otherInfo);
 
-		Context httpContext = createHttpContext(dictionary);
+		ServletContextHandler httpContext = createHttpContext(dictionary);
 		if (null != customizer)
-			httpContext = (Context) customizer.customizeContext(httpContext, dictionary);
+			httpContext = (ServletContextHandler) customizer.customizeContext(httpContext, dictionary);
 
 		httpContext.addServlet(holder, "/*"); //$NON-NLS-1$
-		server.addHandler(httpContext);
+		server.setHandler(httpContext);
 
 		try {
 			server.start();
@@ -241,8 +244,8 @@ public class HttpServerManager implements ManagedServiceFactory {
 		return sslConnector;
 	}
 
-	private Context createHttpContext(Dictionary dictionary) {
-		Context httpContext = new Context();
+	private ServletContextHandler createHttpContext(Dictionary dictionary) {
+		ServletContextHandler httpContext = new ServletContextHandler();
 		httpContext.setAttribute(INTERNAL_CONTEXT_CLASSLOADER, Thread.currentThread().getContextClassLoader());
 		httpContext.setClassLoader(this.getClass().getClassLoader());
 

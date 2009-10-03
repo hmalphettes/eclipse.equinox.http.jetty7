@@ -10,8 +10,8 @@
  *******************************************************************************/
 package org.slf4j;
 
-import org.mortbay.log.Log;
-import org.mortbay.log.StdErrLog;
+import org.eclipse.jetty.util.log.Log;
+import org.eclipse.jetty.util.log.StdErrLog;
 
 // NOTE: This class is not a real SLF4J implementation and MUST NOT be exported as a general implementation!
 // It is a place-holder to allow overriding the default logging done in Jetty
@@ -80,7 +80,7 @@ public class Logger extends StdErrLog {
 			setDebugEnabled(true);
 	}
 
-	public org.mortbay.log.Logger getLogger(String name) {
+	public org.eclipse.jetty.util.log.Logger getLogger(String name) {
 		if ((name == null && this.localName == null) || (name != null && name.equals(this.localName)))
 			return this;
 		return new Logger(name);

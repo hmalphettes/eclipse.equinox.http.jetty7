@@ -2,3 +2,16 @@ Friendly fork of equinox's bootstrapping of jetty6 server to port it to jetty7.
 Here is the command that imported the bundle:
 git cvsimport -d :pserver:anonymous@dev.eclipse.org:/cvsroot/rt org.eclipse.equinox/compendium/bundles/org.eclipse.equinox.http.servlet
 
+The primary goal is a straight port to jetty7.
+The secondary goal is to make as few modifications as possible so that this implementation of the HttpService accomodate with a Jetty server started by the bundle "hightide-on-osgi"
+
+
+== Port from jetty 6 to jetty 7: done.
+Checked the help of eclipse with jetty7 only bundles loaded.
+Details to fix: the console shows this when jetty7 is started:
+2009-10-02 19:04:36.874:INFO::Logging to StdErrLog::DEBUG=false via org.eclipse.jetty.util.log.StdErrLog
+2009-10-02 19:04:37.017:INFO::jetty-7.0.0.RC5
+2009-10-02 19:04:37.080:INFO::Started SelectChannelConnector@0.0.0.0:49897
+
+
+== Ability to use another instance of jetty instead of starting its own.

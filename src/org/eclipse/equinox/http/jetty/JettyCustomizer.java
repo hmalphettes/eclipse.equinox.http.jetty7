@@ -33,13 +33,13 @@ public abstract class JettyCustomizer {
 	 * framework. Changing those may cause breakage and thus must be avoided.
 	 * </p>
 	 * @param context 
-	 *             	the Jetty context; in case of Jetty 6 the context is of 
-	 *             	type <code>org.mortbay.jetty.servlet.Context</code>
+	 *             	the Jetty context; in case of Jetty 7 the context is of 
+	 *             	type <code>org.eclipse.jetty.servlet.ServletHolder</code>
 	 * @param settings
 	 * 				the settings as passed to {@link JettyConfigurator#startServer(String, Dictionary)}
 	 * @return context
-	 *             	the customized context; in case of Jetty 6 the context is of 
-	 *             	type <code>org.mortbay.jetty.servlet.Context</code>
+	 *             	the customized context; in case of Jetty 7 the context is of 
+	 *             	type <code>org.eclipse.jetty.servlet.ServletHolder</code>
 	 */
 	public Object customizeContext(Object context, Dictionary settings) {
 		return context;
@@ -53,12 +53,12 @@ public abstract class JettyCustomizer {
 	 * </p>
 	 * @param connector 
 	 *             	the Jetty connector; in case of Jetty 6 the context is of 
-	 *             	type <code>org.mortbay.jetty.Connector</code>
+	 *             	type <code>org.eclipse.jetty.server.Connector</code>
 	 * @param settings
 	 * 				the settings as passed to {@link JettyConfigurator#startServer(String, Dictionary)}
 	 * @return connector
 	 *             	the customized connector; in case of Jetty 6 the connector is of 
-	 *             	type <code>org.mortbay.jetty.Connector</code>
+	 *             	type <code>org.eclipse.jetty.server.Connector</code>
 	 */
 	public Object customizeHttpConnector(Object connector, Dictionary settings) {
 		return connector;
@@ -71,13 +71,13 @@ public abstract class JettyCustomizer {
 	 * Implementors may perform additional configuration of the Jetty Connector.
 	 * </p>
 	 * @param connector 
-	 *             	the Jetty connector; in case of Jetty 6 the connector is of 
-	 *             	type <code>org.mortbay.jetty.Connector</code>
+	 *             	the Jetty connector; in case of Jetty 7 the connector is of 
+	 *             	type <code>org.eclipse.jetty.server.Connector</code>
 	 * @param settings
 	 * 				the settings as passed to {@link JettyConfigurator#startServer(String, Dictionary)}
 	 * @return connector
-	 *             	the customized connector; in case of Jetty 6 the connector is of 
-	 *             	type <code>org.mortbay.jetty.Connector</code>
+	 *             	the customized connector; in case of Jetty 7 the connector is of 
+	 *             	type <code>org.eclipse.jetty.server.Connector</code>
 	 */
 	public Object customizeHttpsConnector(Object connector, Dictionary settings) {
 		return connector;
