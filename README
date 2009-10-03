@@ -1,0 +1,4 @@
+Friendly fork of equinox's bootstrapping of jetty6 server to port it to jetty7.
+Here is the command that imported the bundle:
+git cvsimport -d :pserver:anonymous@dev.eclipse.org:/cvsroot/rt org.eclipse.equinox/compendium/bundles/org.eclipse.equinox.http.servlet
+
